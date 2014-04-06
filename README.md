@@ -85,6 +85,15 @@ Support
 
 Contact erictherobot@gmail.com or twitter @erictherobot
 
+Meanings
+====
+
+Kano \k(a)-no\ as a boy's name is of Japanese origin, and the meaning of Kano is "one's masculine power, capability".
+
+====
+
+The Kano model is a theory of product development and customer satisfaction developed in the 1980s by Professor Noriaki Kano, which classifies customer preferences into five categories.
+
 License
 ====
 

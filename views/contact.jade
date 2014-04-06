@@ -1,0 +1,37 @@
+extends layout
+
+block content
+  #hero-page.jumbotron.text-center.abel
+    .container
+      h1.hero-text.animated.fadeInDown
+        | Contact Us
+    br
+  .container
+    .row
+      .col-md-3.hidden-xs.hidden-sm
+        include partials/sidebars/pagesNav
+      .col-md-9
+        include partials/flash
+        .panel.panel-default
+            .panel-heading
+                h3.panel-title Contact Us
+              .panel-body
+                form.form-horizontal(role='form', method='POST')
+                  input(type='hidden', name='_csrf', value=_csrf)
+                  .form-group
+                    label(class='col-sm-2 control-label', for='name') Your Name
+                    .col-sm-10
+                      input.form-control(type='text', name='name', id='name', autofocus=true)
+                  .form-group
+                    label(class='col-sm-2 control-label', for='email') Your Email
+                    .col-sm-10
+                      input.form-control(type='text', name='email', id='email')
+                  .form-group
+                    label(class='col-sm-2 control-label', for='message') Your Message
+                    .col-sm-10
+                      textarea.form-control(type='text', name='message', id='message', rows='7')
+                  .form-group
+                    .col-sm-offset-2.col-sm-8
+                      button.btn.btn-default-invert(type='submit')
+                        i.fa.fa-mail-forward
+                        | Contact Us

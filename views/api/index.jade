@@ -1,0 +1,77 @@
+extends ../layout
+
+block content
+  #hero-page.jumbotron.text-center.abel
+    .container
+      h1.hero-text.animated.fadeInDown
+        | API's
+        input#search.form-control.col-lg-4.input-lg(type='search', value='', placeholder='Search for an API below...')
+    br
+  .container
+    .row
+      .col-lg-12
+        table#table.table
+          thead
+            tr
+              th API Name
+              th Description
+              th Version #
+          tbody
+            tr
+              td: a(href='/api/aviary') Aviary
+              td Aviary is a photo editor in your browser
+              td v1
+            tr
+              td: a(href='/api/clockwork') Clockwork SMS
+              td Clockwork SMS is a mobile text messaging service
+              td v1
+            tr
+              td: a(href='/api/facebook') Facebook
+              td Facebook API
+              td v1
+            tr
+              td: a(href='/api/github') GitHub
+              td Github API
+              td v1
+            tr
+              td: a(href='/api/lastfm') Last.fm
+              td Last.fm API
+              td v1
+            tr
+              td: a(href='/api/linkedin') LinkedIn
+              td LinkedIn API
+              td v1
+            tr
+              td: a(href='/api/nyt') New York Times
+              td New York Times API
+              td v1
+            tr
+              td: a(href='/api/paypal') PayPal
+              td PayPal API
+              td v1
+            tr
+              td: a(href='/api/steam') Steam
+              td Steam API
+              td v1
+            tr
+              td: a(href='/api/twilio') Twilio
+              td Twilio API
+              td v1
+            tr
+              td: a(href='/api/tumblr') Tumblr
+              td Tumblr API
+              td v1
+            tr
+              td: a(href='/api/twitter') Twitter
+              td Twitter API
+              td v1
+            tr
+              td: a(href='/api/cheerio') Cheerio
+              td Cheerio API
+              td v1
+            tr
+              td: a(href='/api/venmo') Venmo
+              td Venmo API
+              td v1
+
+  script(src='//rawgithub.com/stidges/jquery-searchable/master/dist/jquery.searchable-1.0.0.min.js')

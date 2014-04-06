@@ -1,0 +1,32 @@
+extends ../layout
+
+block content
+  #hero-page.jumbotron.text-center.abel
+    .container
+      h1.hero-text.animated.fadeInDown
+        | FAQs
+    br
+  .container
+    .row
+      .col-md-3.hidden-xs.hidden-sm
+        include ../partials/sidebars/pagesNav
+      .col-md-9
+        .panel.panel-default
+            .panel-heading
+                h3.panel-title FAQs
+              .panel-body
+                ul.list-unstyled
+                  li
+                    a(href='#jump') What does this app do?
+
+        .panel.panel-default
+            .panel-heading
+                h3.panel-title FAQ - Answers
+              .panel-body
+                dl
+                  dt#jump
+                    strong Q: 
+                    | What does this app do?
+                  dd
+                    strong A: 
+                    |  This app does this and that. It can also do many more things.

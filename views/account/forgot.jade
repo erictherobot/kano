@@ -1,0 +1,22 @@
+extends ../layout
+
+block content
+  #hero-page.jumbotron.text-center.abel
+    .container
+      h1.hero-text.animated.fadeInDown
+        | Forgot Password
+    br
+  .container
+    .row
+      .col-sm-8.col-sm-offset-2
+        include ../partials/flash
+        form(method='POST')
+          input(type='hidden', name='_csrf', value=_csrf)
+          .form-group
+            p Enter your email address below and we will send you password reset instructions.
+            label.control-label(for='email') Email
+            input.form-control(type='email', name='email', id='email', placeholder='Email', autofocus=true)
+          .form-group
+            button.btn.btn-default-invert(type='submit')
+              i.fa.fa-key
+              | Reset Password

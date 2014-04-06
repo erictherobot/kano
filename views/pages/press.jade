@@ -1,0 +1,23 @@
+extends ../layout
+
+block content
+  #hero-page.jumbotron.text-center.abel
+    .container
+      h1.hero-text.animated.fadeInDown
+        | Press
+    br
+  .container
+    .row
+      .col-md-3.hidden-xs.hidden-sm
+        include ../partials/sidebars/pagesNav
+      .col-md-9
+        .panel.panel-default
+            .panel-heading
+                h3.panel-title Press
+              .panel-body
+                | Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                |  tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                |  quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                |  consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                |  cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                |  proident, sunt in culpa qui officia deserunt mollit anim id est laborum.

@@ -1,4 +1,4 @@
-![Magnium CI Build Status](https://magnum-ci.com/status/5a6124dfaf276f40a05cf431e9597c54.png "Magnium CI Build Status")
+![Magnium CI Build Status](https://magnum-ci.com/status/2b8aafce819111e1aa3ea86d007fbd7c.png "Magnium CI Build Status")
 
 KANO
 ====

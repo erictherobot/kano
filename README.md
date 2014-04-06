@@ -57,9 +57,13 @@ Install NPM and Dependencies from package.json file
 
     npm install
 
-Run the app
+Start the app
 
     node app.js
+
+If you want the app to run continually during development, use https://github.com/remy/nodemon
+
+    nodemon app.js
 
 View your app in a browser of choice visit http://localhost:3000
 

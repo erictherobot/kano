@@ -4,7 +4,7 @@ block content
   #hero-page.jumbotron.text-center.abel
     .container
       h1.hero-text.animated.fadeInDown
-        i.fa.fa-facebook-square(style='color: #335397')
+        i.fa.fa-facebook-square
         | Facebook API
     br
   .container
@@ -36,6 +36,6 @@ block content
     .row
       for friend in friends
         .col-xs-3.col-md-2
-          a.thumbnail(href='http://facebook.com/#{friend.id}')
-            img(src='https://graph.facebook.com/#{friend.id}/picture?width=150&height=150')
-            div.facebook-caption= friend.name
+          a.thumbnail(href='http://facebook.com/#{friend.id}', style='border:none;')
+            img.img-circle(src='https://graph.facebook.com/#{friend.id}/picture?width=150&height=150')
+          div.facebook-caption.text-center(style='position:relative;')= friend.name

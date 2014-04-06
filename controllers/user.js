@@ -111,7 +111,7 @@ exports.postSignup = function(req, res, next) {
 };
 
 /**
- * GET /account
+ * GET /dashboard
  * Profile page.
  */
 
@@ -122,7 +122,7 @@ exports.getAccount = function(req, res) {
 };
 
 /**
- * POST /account/profile
+ * POST /dashboard/profile
  * Update profile information.
  */
 
@@ -145,7 +145,7 @@ exports.postUpdateProfile = function(req, res, next) {
 
 
 /**
- * GET /account
+ * GET /dashboard
  * Profile page.
  */
 
@@ -157,7 +157,7 @@ exports.getDashboardSettings = function(req, res) {
 
 
 /**
- * GET /account
+ * GET /dashboard
  * Profile page.
  */
 
@@ -169,7 +169,7 @@ exports.getDashboardVerifications = function(req, res) {
 
 
 /**
- * GET /account
+ * GET /dashboard
  * Profile page.
  */
 
@@ -182,7 +182,7 @@ exports.getDashboardPassword = function(req, res) {
 
 
 /**
- * POST /account/password
+ * POST /dashboard/password
  * Update current password.
  * @param password
  */
@@ -212,7 +212,7 @@ exports.postDashboardPassword = function(req, res, next) {
 };
 
 /**
- * POST /account/delete
+ * POST /dashboard/delete
  * Delete user account.
  * @param id - User ObjectId
  */
@@ -226,7 +226,7 @@ exports.postDeleteAccount = function(req, res, next) {
 };
 
 /**
- * GET /account/unlink/:provider
+ * GET /dashboard/unlink/:provider
  * Unlink OAuth2 provider from the current user.
  * @param provider
  * @param id - User ObjectId
@@ -243,7 +243,7 @@ exports.getOauthUnlink = function(req, res, next) {
     user.save(function(err) {
       if (err) return next(err);
       req.flash('info', { msg: provider + ' account has been unlinked.' });
-      res.redirect('/account');
+      res.redirect('/dashboard/verifications');
     });
   });
 };

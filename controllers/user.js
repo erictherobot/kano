@@ -13,8 +13,8 @@ var secrets = require('../config/secrets');
 
 exports.getSignin = function(req, res) {
   if (req.user) return res.redirect('/');
-  res.render('account/signin', {
-    title: 'Login'
+  res.render('dashboard/signin', {
+    title: 'Sign In'
   });
 };
 
@@ -67,7 +67,7 @@ exports.logout = function(req, res) {
 
 exports.getSignup = function(req, res) {
   if (req.user) return res.redirect('/');
-  res.render('account/signup', {
+  res.render('dashboard/signup', {
     title: 'Create Account'
   });
 };
@@ -116,8 +116,8 @@ exports.postSignup = function(req, res, next) {
  */
 
 exports.getAccount = function(req, res) {
-  res.render('account/profile', {
-    title: 'Account Management'
+  res.render('dashboard/profile', {
+    title: 'My Profile'
   });
 };
 
@@ -138,10 +138,48 @@ exports.postUpdateProfile = function(req, res, next) {
     user.save(function(err) {
       if (err) return next(err);
       req.flash('success', { msg: 'Profile information updated.' });
-      res.redirect('/account');
+      res.redirect('/dashboard');
     });
   });
 };
+
+
+/**
+ * GET /account
+ * Profile page.
+ */
+
+exports.getDashboardSettings = function(req, res) {
+  res.render('dashboard/settings', {
+    title: 'Settings'
+  });
+};
+
+
+/**
+ * GET /account
+ * Profile page.
+ */
+
+exports.getDashboardVerifications = function(req, res) {
+  res.render('dashboard/verifications', {
+    title: 'Verifications'
+  });
+};
+
+
+/**
+ * GET /account
+ * Profile page.
+ */
+
+exports.getDashboardPassword = function(req, res) {
+  res.render('dashboard/change-password', {
+    title: 'Change Password'
+  });
+};
+
+
 
 /**
  * POST /account/password
@@ -149,7 +187,7 @@ exports.postUpdateProfile = function(req, res, next) {
  * @param password
  */
 
-exports.postUpdatePassword = function(req, res, next) {
+exports.postDashboardPassword = function(req, res, next) {
   req.assert('password', 'Password must be at least 4 characters long').len(4);
   req.assert('confirmPassword', 'Passwords do not match').equals(req.body.password);
 
@@ -157,7 +195,7 @@ exports.postUpdatePassword = function(req, res, next) {
 
   if (errors) {
     req.flash('errors', errors);
-    return res.redirect('/account');
+    return res.redirect('/dashboard/change-password');
   }
 
   User.findById(req.user.id, function(err, user) {
@@ -168,7 +206,7 @@ exports.postUpdatePassword = function(req, res, next) {
     user.save(function(err) {
       if (err) return next(err);
       req.flash('success', { msg: 'Password has been changed.' });
-      res.redirect('/account');
+      res.redirect('/dashboard/change-password');
     });
   });
 };
@@ -228,7 +266,7 @@ exports.getReset = function(req, res) {
         req.flash('errors', { msg: 'Password reset token is invalid or has expired.' });
         return res.redirect('/forgot');
       }
-      res.render('account/reset', {
+      res.render('dashboard/reset', {
         title: 'Password Reset'
       });
     });
@@ -308,7 +346,7 @@ exports.getForgot = function(req, res) {
   if (req.isAuthenticated()) {
     return res.redirect('/');
   }
-  res.render('account/forgot', {
+  res.render('dashboard/forgot', {
     title: 'Forgot Password'
   });
 };

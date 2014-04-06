@@ -1,0 +1,24 @@
+extends ../layout
+
+block content
+  #hero-page.jumbotron.text-center.abel
+    .container
+      h1.hero-text.animated.fadeInDown
+        | Settings
+    br
+  .container
+    .row
+      .col-md-4.hidden-xs.hidden-sm
+        include ../partials/sidebars/dashboardNav
+      .col-md-8
+        .panel.panel-default
+            .panel-heading
+                h3.panel-title Settings
+              .panel-body
+              include ../partials/flash
+              p You can delete your account, but keep in mind this action is irreversible.
+              form(action='/dashboard/delete', method='POST')
+                input(type='hidden', name='_csrf', value=token)
+                button.btn.btn-default-invert(type='submit')
+                  i.fa.fa-trash-o
+                  | Delete my account

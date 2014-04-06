@@ -94,6 +94,12 @@ Kano \k(a)-no\ as a boy's name is of Japanese origin, and the meaning of Kano is
 
 The Kano model is a theory of product development and customer satisfaction developed in the 1980s by Professor Noriaki Kano, which classifies customer preferences into five categories.
 
+- Must-be Quality
+- One-dimensional Quality
+- Attractive Quality
+- Indifferent Quality
+- Reverse Quality
+
 License
 ====
 

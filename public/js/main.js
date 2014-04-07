@@ -7,6 +7,9 @@ $(document).ready(function() {
       });
   }, 5000);
 
+  // Get Bootstrap Radio Button Toggles To Activate
+  $(':input:checked').parent('.btn').addClass('active');
+
   // Search Table
   $( '#table' ).searchable({
       striped: true,

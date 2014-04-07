@@ -96,7 +96,7 @@ app.use(function(req, res) {
   res.status(404);
   res.render('404');
 });
-app.locals.pretty = true;
+app.locals.pretty = false;
 app.use(express.errorHandler());
 
 /**

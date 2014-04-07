@@ -1,13 +1,13 @@
 {
   "name": "kano",
   "subdomain": "kano",
-  "version": "0.0.1",
+  "version": "0.0.1-4",
   "repository": {
     "type": "git",
     "url": "https://github.com/erictherobot/kano.git"
   },
   "engines": {
-    "node": "0.10.25"
+    "node": "0.8.x"
   },
   "scripts": {
     "start": "node app.js",

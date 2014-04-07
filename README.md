@@ -5,6 +5,11 @@ KANO
 
 nodejs + expressjs + mongodb + jade + bootstrap + mocha + API's
 
+Demo
+====
+
+http://kano.jit.su
+
 Themes
 ====
 

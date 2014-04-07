@@ -68,7 +68,7 @@ exports.logout = function(req, res) {
 exports.getSignup = function(req, res) {
   if (req.user) return res.redirect('/');
   res.render('dashboard/signup', {
-    title: 'Create Account'
+    title: 'Sign Up'
   });
 };
 

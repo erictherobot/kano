@@ -69,6 +69,10 @@ module.exports = {
     apiKey: process.env.STEAM_KEY || 'Your Steam API Key'
   },
 
+  stripe: {
+    apiKey: process.env.STRIPE_KEY || 'Your Stripe API Key'
+  },
+
   twilio: {
     sid: process.env.TWILIO_SID || 'Your Twilio SID',
     token: process.env.TWILIO_TOKEN || 'Your Twilio token'

@@ -1,13 +1,9 @@
 {
   "name": "kano",
-  "subdomain": "kano",
-  "version": "0.0.1-4",
+  "version": "0.0.1",
   "repository": {
     "type": "git",
     "url": "https://github.com/erictherobot/kano.git"
-  },
-  "engines": {
-    "node": "0.8.x"
   },
   "scripts": {
     "start": "node app.js",
@@ -43,6 +39,7 @@
     "passport-twitter": "~1.0.2",
     "paypal-rest-sdk": "~0.6.4",
     "request": "~2.34.0",
+    "stripe": "~2.4.4",
     "tumblr.js": "~0.0.4",
     "twilio": "~1.6.0",
     "twit": "~1.1.12",

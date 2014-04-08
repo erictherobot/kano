@@ -146,20 +146,26 @@ app.get('/api/venmo', passportConf.isAuthenticated, passportConf.isAuthorized, a
 app.post('/api/venmo', passportConf.isAuthenticated, passportConf.isAuthorized, apiController.postVenmo);
 app.get('/api/linkedin', passportConf.isAuthenticated, passportConf.isAuthorized, apiController.getLinkedin);
 
+/** Stripe API **/
+app.get('/api/stripe', apiController.getStripe);
+app.get('/api/stripe/onetime', apiController.getStripeOnetime);
+app.post('/api/stripe/onetime', apiController.postStripeOnetime);
+app.get('/api/stripe/newsubscriber', apiController.getStripeNewSubscriber);
+app.post('/api/stripe/newsubscriber', apiController.postStripeNewSubscriber);
+app.get('/api/stripe/customers', apiController.getStripeCustomers);
 
- /** Pages Routes **/
- app.get('/pages/jobs', pagesController.getJobs);
- app.get('/pages/our-team', pagesController.getOurTeam);
- app.get('/pages/press', pagesController.getPress);
- app.get('/pages/how-it-works', pagesController.getHowItWorks);
- app.get('/pages/terms-of-use', pagesController.getTermsOfUse);
- app.get('/pages/privacy-policy', pagesController.getPrivacyPolicy);
- app.get('/pages/about-us', pagesController.getAboutUs);
- app.get('/pages/faqs', pagesController.getFaqs);
- app.get('/pages/getting-started', pagesController.getGettingStarted);
- app.get('/pages/contact-us', contactController.getContact);
- app.post('/pages/contact-us', contactController.postContact);
-
+/** Pages Routes **/
+app.get('/pages/jobs', pagesController.getJobs);
+app.get('/pages/our-team', pagesController.getOurTeam);
+app.get('/pages/press', pagesController.getPress);
+app.get('/pages/how-it-works', pagesController.getHowItWorks);
+app.get('/pages/terms-of-use', pagesController.getTermsOfUse);
+app.get('/pages/privacy-policy', pagesController.getPrivacyPolicy);
+app.get('/pages/about-us', pagesController.getAboutUs);
+app.get('/pages/faqs', pagesController.getFaqs);
+app.get('/pages/getting-started', pagesController.getGettingStarted);
+app.get('/pages/contact-us', contactController.getContact);
+app.post('/pages/contact-us', contactController.postContact);
 
 /**
  * OAuth routes for sign-in.

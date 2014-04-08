@@ -1,0 +1,17 @@
+extends ../../layout
+
+block content
+  #hero-page.jumbotron.text-center.abel
+    .container
+      h1.hero-text.animated.fadeInDown
+        i.fa.fa-dollar
+        | Stripe API
+    br
+  .container
+    .row
+      ul.list-inline
+        li: a(href='/api/stripe/onetime') One Time Charges
+        | /
+        li: a(href='/api/stripe/newsubscriber') New Subscriber
+        | /
+        li: a(href='/api/stripe/customers') List All Customers

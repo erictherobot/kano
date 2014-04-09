@@ -351,14 +351,14 @@ exports.getStripe = function(req, res, next) {
     });
 };
 
-exports.getStripeOnetime = function(req, res, next) {
+exports.getStripeCharge = function(req, res, next) {
     //Create a token for the CC
-    res.render('api/stripe/onetime', {
+    res.render('api/stripe/charge', {
         title: 'Stripe API'
     });
 };
 
-exports.postStripeOnetime = function(req, res, next) {
+exports.postStripeCharge = function(req, res, next) {
     stripe.tokens.create({
       card: {
         "number": req.body.ccNumber,
@@ -369,7 +369,7 @@ exports.postStripeOnetime = function(req, res, next) {
     }, function(err, token) {
         if (err) {
             req.flash('errors', { msg: err.message });
-            return res.redirect('/api/stripe/onetime');
+            return res.redirect('/api/stripe/charge');
         }
         //Create a new customer
         stripe.customers.create({
@@ -385,10 +385,10 @@ exports.postStripeOnetime = function(req, res, next) {
             }, function(err, charge) {
                 if (err) {
                     req.flash('errors', { msg: err.message });
-                    return res.redirect('/api/stripe/onetime');
+                    return res.redirect('/api/stripe/charge');
                 }else{
                     req.flash('success', { msg: 'Charged Successfully'});
-                    res.render('api/stripe/onetime', {
+                    res.render('api/stripe/charge', {
                         title: 'Stipe API',
                         customer: customer,
                         charge: charge
@@ -400,16 +400,16 @@ exports.postStripeOnetime = function(req, res, next) {
 };
 
 
-exports.getStripeNewSubscriber = function(req, res, next) {
+exports.getStripeSubscriptions = function(req, res, next) {
     stripe.plans.list(function(err, plans) {
-        res.render('api/stripe/newsubscriber', {
+        res.render('api/stripe/subscriptions', {
             title: 'Stripe API',
             plans: _.pluck(plans.data, 'name')
         });
     });
 };
 
-exports.postStripeNewSubscriber = function(req, res, next) {
+exports.postStripeSubscriptions = function(req, res, next) {
     console.log(req.body.plantype);
     stripe.tokens.create({
       card: {
@@ -421,7 +421,7 @@ exports.postStripeNewSubscriber = function(req, res, next) {
     }, function(err, token) {
         if (err) {
             req.flash('errors', { msg: err.message });
-            return res.redirect('/api/stripe/newsubscriber');
+            return res.redirect('/api/stripe/subscriptions');
         }
         //Create a new customer
         stripe.customers.create({
@@ -436,11 +436,11 @@ exports.postStripeNewSubscriber = function(req, res, next) {
               function(err, subscription) {
                 if (err) {
                     req.flash('errors', { msg: err.message });
-                    return res.redirect('/api/stripe/newsubscriber');
+                    return res.redirect('/api/stripe/subscriptions');
                 }else{
                     stripe.plans.list(function(err, plans) {
                         req.flash('success', { msg: 'Subscribed Successfully'});
-                        res.render('api/stripe/newsubscriber', {
+                        res.render('api/stripe/subscriptions', {
                             title: 'Stipe API',
                             customer: customer,
                             subscription: subscription,

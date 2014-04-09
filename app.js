@@ -148,10 +148,10 @@ app.get('/api/linkedin', passportConf.isAuthenticated, passportConf.isAuthorized
 
 /** Stripe API **/
 app.get('/api/stripe', apiController.getStripe);
-app.get('/api/stripe/onetime', apiController.getStripeOnetime);
-app.post('/api/stripe/onetime', apiController.postStripeOnetime);
-app.get('/api/stripe/newsubscriber', apiController.getStripeNewSubscriber);
-app.post('/api/stripe/newsubscriber', apiController.postStripeNewSubscriber);
+app.get('/api/stripe/charge', apiController.getStripeCharge);
+app.post('/api/stripe/onetime', apiController.postStripeCharge);
+app.get('/api/stripe/subscriptions', apiController.getStripeSubscriptions);
+app.post('/api/stripe/subscriptions', apiController.postStripeSubscriptions);
 app.get('/api/stripe/customers', apiController.getStripeCustomers);
 
 /** Pages Routes **/

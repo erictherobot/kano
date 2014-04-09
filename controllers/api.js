@@ -14,6 +14,7 @@ var Github = require('github-api');
 var Twit = require('twit');
 var paypal = require('paypal-rest-sdk');
 var stripe =  require('stripe')(secrets.stripe.apiKey);
+var d3 = require('d3');
 var twilio = require('twilio')(secrets.twilio.sid, secrets.twilio.token);
 var Linkedin = require('node-linkedin')(secrets.linkedin.clientID, secrets.linkedin.clientSecret, secrets.linkedin.callbackURL);
 var clockwork = require('clockwork')({key: secrets.clockwork.apiKey});
@@ -26,6 +27,17 @@ var clockwork = require('clockwork')({key: secrets.clockwork.apiKey});
 exports.getApi = function(req, res) {
   res.render('api/index', {
     title: 'API'
+  });
+};
+
+/**
+ * GET /api/d3
+ * D3 examples.
+ */
+
+exports.getD3 = function(req, res) {
+  res.render('api/d3', {
+    title: 'D3 Examples'
   });
 };
 
@@ -143,7 +155,7 @@ exports.getCheerio = function(req, res, next) {
 exports.getGithub = function(req, res) {
   var token = _.findWhere(req.user.tokens, { kind: 'github' });
   var github = new Github({ token: token.accessToken });
-  var repo = github.getRepo('sahat', 'requirejs-library');
+  var repo = github.getRepo('erictherobot', 'kano');
   repo.show(function(err, repo) {
     res.render('api/github', {
       title: 'GitHub API',

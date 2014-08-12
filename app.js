@@ -3,7 +3,17 @@
  */
 
 var express = require('express');
-var MongoStore = require('connect-mongo')(express);
+var cookieParser = require('cookie-parser');
+var compress = require('compression');
+var session = require('express-session');
+var bodyParser = require('body-parser');
+var logger = require('morgan');
+var errorHandler = require('errorhandler');
+var csrf = require('lusca').csrf();
+var methodOverride = require('method-override');
+
+var _ = require('lodash');
+var MongoStore = require('connect-mongo')({ session: session });
 var flash = require('express-flash');
 var path = require('path');
 var mongoose = require('mongoose');
@@ -40,64 +50,72 @@ var app = express();
 
 mongoose.connect(secrets.db);
 mongoose.connection.on('error', function() {
-  console.error('✗ MongoDB Connection Error. Please make sure MongoDB is running.');
+  console.error('MongoDB Connection Error. Make sure MongoDB is running.');
 });
+
+var hour = 3600000;
+var day = hour * 24;
+var week = day * 7;
+
+/**
+ * CSRF whitelist.
+ */
+
+var csrfExclude = ['/url1', '/url2'];
 
 /**
  * Express configuration.
  */
 
-var hour = 3600000;
-var day = (hour * 24);
-var month = (day * 30);
-
 app.set('port', process.env.PORT || 3000);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
+app.use(compress());
 app.use(connectAssets({
-  paths: ['public/css', 'public/js'],
+  paths: [path.join(__dirname, 'public/css'), path.join(__dirname, 'public/js')],
   helperContext: app.locals
 }));
-app.use(express.compress());
-app.use(express.logger('dev'));
-app.use(express.cookieParser());
-app.use(express.json());
-app.use(express.urlencoded());
+app.use(logger('dev'));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(expressValidator());
-app.use(express.methodOverride());
-app.use(express.session({
+app.use(methodOverride());
+app.use(cookieParser());
+app.use(session({
+  resave: true,
+  saveUninitialized: true,
   secret: secrets.sessionSecret,
   store: new MongoStore({
     url: secrets.db,
     auto_reconnect: true
   })
 }));
-app.use(express.csrf());
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(flash());
 app.use(function(req, res, next) {
+  // CSRF protection.
+  if (_.contains(csrfExclude, req.path)) return next();
+  csrf(req, res, next);
+});
+app.use(function(req, res, next) {
+  // Make user object available in templates.
   res.locals.user = req.user;
-  res.locals._csrf = req.csrfToken();
-  res.locals.secrets = secrets;
   next();
 });
-app.use(flash());
-app.use(express.static(path.join(__dirname, 'public'), { maxAge: month }));
 app.use(function(req, res, next) {
-  // Keep track of previous URL
-  if (req.method !== 'GET') return next();
+  // Remember original destination before login.
   var path = req.path.split('/')[1];
-  if (/(auth|signin|logout|signup)$/i.test(path)) return next();
+  if (/auth|signin|logout|signup|fonts|favicon/i.test(path)) {
+    return next();
+  }
   req.session.returnTo = req.path;
   next();
 });
-app.use(app.router);
-app.use(function(req, res) {
-  res.status(404);
-  res.render('404', {title: 'Error 404 - Page Not Found'});
-});
+
+app.use(express.static(path.join(__dirname, 'public'), { maxAge: week }));
+
 app.locals.pretty = false;
-app.use(express.errorHandler());
 
 /**
  * Application routes.
@@ -174,6 +192,10 @@ app.post('/pages/contact-us', contactController.postContact);
  * OAuth routes for sign-in.
  */
 
+app.get('/auth/instagram', passport.authenticate('instagram'));
+app.get('/auth/instagram/callback', passport.authenticate('instagram', { failureRedirect: '/signin' }), function(req, res) {
+  res.redirect(req.session.returnTo || '/');
+});
 app.get('/auth/facebook', passport.authenticate('facebook', { scope: ['email', 'user_location'] }));
 app.get('/auth/facebook/callback', passport.authenticate('facebook', { failureRedirect: '/signin' }), function(req, res) {
   res.redirect(req.session.returnTo || '/');
@@ -211,6 +233,22 @@ app.get('/auth/venmo', passport.authorize('venmo', { scope: 'make_payments acces
 app.get('/auth/venmo/callback', passport.authorize('venmo', { failureRedirect: '/api' }), function(req, res) {
   res.redirect('/api/venmo');
 });
+
+/**
+ * 404 Error Handler.
+ */
+
+app.use(function(req, res) {
+  res.status(404);
+  res.render('404', {title: 'Error 404 - Page Not Found'});
+});
+
+
+/**
+ * 500 Error Handler.
+ */
+
+app.use(errorHandler());
 
 /**
  * Start Express server.

@@ -12,7 +12,6 @@ var tumblr = require('tumblr.js');
 var foursquare = require('node-foursquare')({ secrets: secrets.foursquare });
 var Github = require('github-api');
 var Twit = require('twit');
-var paypal = require('paypal-rest-sdk');
 var stripe =  require('stripe')(secrets.stripe.apiKey);
 var d3 = require('d3');
 var twilio = require('twilio')(secrets.twilio.sid, secrets.twilio.token);
@@ -281,84 +280,6 @@ exports.getTwitter = function(req, res, next) {
       title: 'Twitter API',
       tweets: reply.statuses
     });
-  });
-};
-
-/**
- * GET /api/paypal
- * PayPal SDK example.
- */
-
-exports.getPayPal = function(req, res, next) {
-  paypal.configure(secrets.paypal);
-
-  var paymentDetails = {
-    intent: 'sale',
-    payer: {
-      payment_method: 'paypal'
-    },
-    redirect_urls: {
-      return_url: secrets.paypal.returnUrl,
-      cancel_url: secrets.paypal.cancelUrl
-    },
-    transactions: [
-      {
-        description: 'Node.js Boilerplate',
-        amount: {
-          currency: 'USD',
-          total: '2.99'
-        }
-      }
-    ]
-  };
-
-  paypal.payment.create(paymentDetails, function(err, payment) {
-    if (err) return next(err);
-    req.session.paymentId = payment.id;
-    var links = payment.links;
-    for (var i = 0; i < links.length; i++) {
-      if (links[i].rel === 'approval_url') {
-        res.render('api/paypal', {
-          approval_url: links[i].href
-        });
-      }
-    }
-  });
-};
-
-/**
- * GET /api/paypal/success
- * PayPal SDK example.
- */
-
-exports.getPayPalSuccess = function(req, res, next) {
-  var paymentId = req.session.paymentId;
-  var paymentDetails = { 'payer_id': req.query.PayerID };
-  paypal.payment.execute(paymentId, paymentDetails, function(err, payment) {
-    if (err) {
-      res.render('api/paypal', {
-        result: true,
-        success: false
-      });
-    } else {
-      res.render('api/paypal', {
-        result: true,
-        success: true
-      });
-    }
-  });
-};
-
-/**
- * GET /api/paypal/cancel
- * PayPal SDK example.
- */
-
-exports.getPayPalCancel = function(req, res, next) {
-  req.session.payment_id = null;
-  res.render('api/paypal', {
-    result: true,
-    canceled: true
   });
 };
 

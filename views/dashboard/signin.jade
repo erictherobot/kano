@@ -19,16 +19,15 @@ block content
               form(method='POST')
                 input(type='hidden', name='_csrf', value=_csrf)
                 .col-sm-8
-                  if secrets.localAuth
-                    .form-group
-                      input.form-control(type='text', name='email', id='email', placeholder='Email', autofocus)
-                    .form-group
-                      input.form-control(type='password', name='password', id='password', placeholder='Password')
-                    .form-group
-                      button.btn.btn-kano-invert(type='submit')
-                        i.fa.fa-unlock-alt
-                        | Sign In
-                      a.btn.btn-link(href='/forgot') Forgot password?
+                  .form-group
+                    input.form-control(type='text', name='email', id='email', placeholder='Email', autofocus)
+                  .form-group
+                    input.form-control(type='password', name='password', id='password', placeholder='Password')
+                  .form-group
+                    button.btn.btn-kano-invert(type='submit')
+                      i.fa.fa-unlock-alt
+                      | Sign In
+                    a.btn.btn-link(href='/forgot') Forgot password?
       .col-sm-3
         .well
           h3.panel-title Need Help?

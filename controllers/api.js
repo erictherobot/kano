@@ -41,17 +41,6 @@ exports.getD3 = function(req, res) {
 };
 
 /**
- * GET /api/paper
- * Paper.js examples.
- */
-
-exports.getPaper = function(req, res) {
-  res.render('api/paper', {
-    title: 'Paper Examples'
-  });
-};
-
-/**
  * GET /api/foursquare
  * Foursquare API example.
  */

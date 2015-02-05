@@ -8,7 +8,7 @@ nodejs + expressjs + mongodb + jade + bootstrap + mocha + API's
 Demo
 ====
 
-http://kano.jit.su
+https://kanoapp.herokuapp.com
 
 Themes
 ====

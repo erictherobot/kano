@@ -50,7 +50,7 @@
     "passport-oauth": "^1.0.0",
     "passport-twitter": "^1.0.3",
     "request": "^2.61.0",
-    "stripe": "^3.7.1",
+    "stripe": "^4.0.0",
     "tumblr.js": "^0.0.5",
     "twilio": "^2.3.0",
     "twit": "^2.1.0",

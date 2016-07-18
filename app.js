@@ -2,47 +2,47 @@
  * Module dependencies.
  */
 
-var express = require('express');
-var cookieParser = require('cookie-parser');
-var compress = require('compression');
-var session = require('express-session');
-var bodyParser = require('body-parser');
-var logger = require('morgan');
-var errorHandler = require('errorhandler');
-var csrf = require('lusca').csrf();
-var methodOverride = require('method-override');
+const express = require('express');
+const cookieParser = require('cookie-parser');
+const compress = require('compression');
+const session = require('express-session');
+const bodyParser = require('body-parser');
+const logger = require('morgan');
+const errorHandler = require('errorhandler');
+const csrf = require('lusca').csrf();
+const methodOverride = require('method-override');
 
-var _ = require('lodash');
-var MongoStore = require('connect-mongo')({ session: session });
-var flash = require('express-flash');
-var path = require('path');
-var mongoose = require('mongoose');
-var passport = require('passport');
-var expressValidator = require('express-validator');
-var connectAssets = require('connect-assets');
+const _ = require('lodash');
+const MongoStore = require('connect-mongo')({ session: session });
+const flash = require('express-flash');
+const path = require('path');
+const mongoose = require('mongoose');
+const passport = require('passport');
+const expressValidator = require('express-validator');
+const connectAssets = require('connect-assets');
 
 /**
  * Load controllers.
  */
 
-var homeController = require('./controllers/home');
-var userController = require('./controllers/user');
-var apiController = require('./controllers/api');
-var pagesController = require('./controllers/pages');
-var contactController = require('./controllers/contact');
+const homeController = require('./controllers/home');
+const userController = require('./controllers/user');
+const apiController = require('./controllers/api');
+const pagesController = require('./controllers/pages');
+const contactController = require('./controllers/contact');
 
 /**
  * API keys + Passport configuration.
  */
 
-var secrets = require('./config/secrets');
-var passportConf = require('./config/passport');
+const secrets = require('./config/secrets');
+const passportConf = require('./config/passport');
 
 /**
  * Create Express server.
  */
 
-var app = express();
+const app = express();
 
 /**
  * Mongoose configuration.
@@ -53,15 +53,15 @@ mongoose.connection.on('error', function() {
   console.error('MongoDB Connection Error. Make sure MongoDB is running.');
 });
 
-var hour = 3600000;
-var day = hour * 24;
-var week = day * 7;
+const hour = 3600000;
+const day = hour * 24;
+const week = day * 7;
 
 /**
  * CSRF whitelist.
  */
 
-var csrfExclude = ['/url1', '/url2'];
+const csrfExclude = ['/url1', '/url2'];
 
 /**
  * Express configuration.
@@ -105,7 +105,7 @@ app.use(function(req, res, next) {
 });
 app.use(function(req, res, next) {
   // Remember original destination before login.
-  var path = req.path.split('/')[1];
+  const path = req.path.split('/')[1];
   if (/auth|signin|logout|signup|fonts|favicon/i.test(path)) {
     return next();
   }

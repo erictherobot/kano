@@ -95,7 +95,7 @@ app.use(passport.session());
 app.use(flash());
 app.use(function(req, res, next) {
   // CSRF protection.
-  if (_.contains(csrfExclude, req.path)) return next();
+  if (_.includes(csrfExclude, req.path)) return next();
   csrf(req, res, next);
 });
 app.use(function(req, res, next) {

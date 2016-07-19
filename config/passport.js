@@ -1,15 +1,15 @@
-var _ = require('lodash');
-var passport = require('passport');
-var LocalStrategy = require('passport-local').Strategy;
-var FacebookStrategy = require('passport-facebook').Strategy;
-var TwitterStrategy = require('passport-twitter').Strategy;
-var GitHubStrategy = require('passport-github').Strategy;
-var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
-var LinkedInStrategy = require('passport-linkedin-oauth2').Strategy;
-var OAuthStrategy = require('passport-oauth').OAuthStrategy; // Tumblr
-var OAuth2Strategy = require('passport-oauth').OAuth2Strategy; // Venmo, Foursquare
-var User = require('../models/User');
-var secrets = require('./secrets');
+const _ = require('lodash');
+const passport = require('passport');
+const LocalStrategy = require('passport-local').Strategy;
+const FacebookStrategy = require('passport-facebook').Strategy;
+const TwitterStrategy = require('passport-twitter').Strategy;
+const GitHubStrategy = require('passport-github').Strategy;
+const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
+const LinkedInStrategy = require('passport-linkedin-oauth2').Strategy;
+const OAuthStrategy = require('passport-oauth').OAuthStrategy; // Tumblr
+const OAuth2Strategy = require('passport-oauth').OAuth2Strategy; // Venmo, Foursquare
+const User = require('../models/User');
+const secrets = require('./secrets');
 
 passport.serializeUser(function(user, done) {
   done(null, user.id);
@@ -85,7 +85,7 @@ passport.use(new FacebookStrategy(secrets.facebook, function(req, accessToken, r
           req.flash('errors', { msg: 'There is already an account using this email address. Sign in to that account and link it with Facebook manually from Account Settings.' });
           done(err);
         } else {
-          var user = new User();
+          const user = new User();
           user.email = profile._json.email;
           user.facebook = profile.id;
           user.tokens.push({ kind: 'facebook', accessToken: accessToken });
@@ -135,7 +135,7 @@ passport.use(new GitHubStrategy(secrets.github, function(req, accessToken, refre
           req.flash('errors', { msg: 'There is already an account using this email address. Sign in to that account and link it with GitHub manually from Account Settings.' });
           done(err);
         } else {
-          var user = new User();
+          const user = new User();
           user.email = profile._json.email;
           user.github = profile.id;
           user.tokens.push({ kind: 'github', accessToken: accessToken });
@@ -180,7 +180,7 @@ passport.use(new TwitterStrategy(secrets.twitter, function(req, accessToken, tok
   } else {
     User.findOne({ twitter: profile.id }, function(err, existingUser) {
       if (existingUser) return done(null, existingUser);
-      var user = new User();
+      const user = new User();
       // Twitter will not provide an email address.  Period.
       // But a person’s twitter username is guaranteed to be unique
       // so we can "fake" a twitter email address as follows:
@@ -229,7 +229,7 @@ passport.use(new GoogleStrategy(secrets.google, function(req, accessToken, refre
           req.flash('errors', { msg: 'There is already an account using this email address. Sign in to that account and link it with Google manually from Account Settings.' });
           done(err);
         } else {
-          var user = new User();
+          const user = new User();
           user.email = profile._json.email;
           user.google = profile.id;
           user.tokens.push({ kind: 'google', accessToken: accessToken });
@@ -281,7 +281,7 @@ passport.use(new LinkedInStrategy(secrets.linkedin, function(req, accessToken, r
           req.flash('errors', { msg: 'There is already an account using this email address. Sign in to that account and link it with LinkedIn manually from Account Settings.' });
           done(err);
         } else {
-          var user = new User();
+          const user = new User();
           user.linkedin = profile.id;
           user.tokens.push({ kind: 'linkedin', accessToken: accessToken });
           user.email = profile._json.emailAddress;
@@ -382,7 +382,7 @@ exports.isAuthenticated = function(req, res, next) {
  */
 
 exports.isAuthorized = function(req, res, next) {
-  var provider = req.path.split('/').slice(-1)[0];
+  const provider = req.path.split('/').slice(-1)[0];
   if (_.findWhere(req.user.tokens, { kind: provider })) next();
   else res.redirect('/auth/' + provider);
 };

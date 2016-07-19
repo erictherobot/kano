@@ -1,10 +1,10 @@
-var _ = require('lodash');
-var async = require('async');
-var crypto = require('crypto');
-var nodemailer = require('nodemailer');
-var passport = require('passport');
-var User = require('../models/User');
-var secrets = require('../config/secrets');
+const _ = require('lodash');
+const async = require('async');
+const crypto = require('crypto');
+const nodemailer = require('nodemailer');
+const passport = require('passport');
+const User = require('../models/User');
+const secrets = require('../config/secrets');
 
 /**
  * GET /signin
@@ -29,7 +29,7 @@ exports.postSignin = function(req, res, next) {
   req.assert('email', 'Email is not valid').isEmail();
   req.assert('password', 'Password cannot be blank').notEmpty();
 
-  var errors = req.validationErrors();
+  const errors = req.validationErrors();
 
   if (errors) {
     req.flash('errors', errors);
@@ -84,14 +84,14 @@ exports.postSignup = function(req, res, next) {
   req.assert('password', 'Password must be at least 4 characters long').len(4);
   req.assert('confirmPassword', 'Passwords do not match').equals(req.body.password);
 
-  var errors = req.validationErrors();
+  const errors = req.validationErrors();
 
   if (errors) {
     req.flash('errors', errors);
     return res.redirect('/signup');
   }
 
-  var user = new User({
+  const user = new User({
     email: req.body.email,
     password: req.body.password
   });
@@ -191,7 +191,7 @@ exports.postDashboardPassword = function(req, res, next) {
   req.assert('password', 'Password must be at least 4 characters long').len(4);
   req.assert('confirmPassword', 'Passwords do not match').equals(req.body.password);
 
-  var errors = req.validationErrors();
+  const errors = req.validationErrors();
 
   if (errors) {
     req.flash('errors', errors);
@@ -233,7 +233,7 @@ exports.postDeleteAccount = function(req, res, next) {
  */
 
 exports.getOauthUnlink = function(req, res, next) {
-  var provider = req.params.provider;
+  const provider = req.params.provider;
   User.findById(req.user.id, function(err, user) {
     if (err) return next(err);
 
@@ -281,7 +281,7 @@ exports.postReset = function(req, res, next) {
   req.assert('password', 'Password must be at least 4 characters long.').len(4);
   req.assert('confirm', 'Passwords must match.').equals(req.body.password);
 
-  var errors = req.validationErrors();
+  const errors = req.validationErrors();
 
   if (errors) {
     req.flash('errors', errors);
@@ -312,14 +312,14 @@ exports.postReset = function(req, res, next) {
         });
     },
     function(user, done) {
-      var smtpTransport = nodemailer.createTransport('SMTP', {
+      const smtpTransport = nodemailer.createTransport('SMTP', {
         service: 'SendGrid',
         auth: {
           user: secrets.sendgrid.user,
           pass: secrets.sendgrid.password
         }
       });
-      var mailOptions = {
+      const mailOptions = {
         to: user.email,
         from: 'eric@kanojs.com',
         subject: 'Your Kano password has been changed',
@@ -360,7 +360,7 @@ exports.getForgot = function(req, res) {
 exports.postForgot = function(req, res, next) {
   req.assert('email', 'Please enter a valid email address.').isEmail();
 
-  var errors = req.validationErrors();
+  const errors = req.validationErrors();
 
   if (errors) {
     req.flash('errors', errors);
@@ -370,7 +370,7 @@ exports.postForgot = function(req, res, next) {
   async.waterfall([
     function(done) {
       crypto.randomBytes(16, function(err, buf) {
-        var token = buf.toString('hex');
+        const token = buf.toString('hex');
         done(err, token);
       });
     },
@@ -390,14 +390,14 @@ exports.postForgot = function(req, res, next) {
       });
     },
     function(token, user, done) {
-      var smtpTransport = nodemailer.createTransport('SMTP', {
+      const smtpTransport = nodemailer.createTransport('SMTP', {
         service: 'SendGrid',
         auth: {
           user: secrets.sendgrid.user,
           pass: secrets.sendgrid.password
         }
       });
-      var mailOptions = {
+      const mailOptions = {
         to: user.email,
         from: 'eric@kanojs.com',
         subject: 'Reset your password on Kano',

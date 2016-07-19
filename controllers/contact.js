@@ -1,6 +1,6 @@
-var secrets = require('../config/secrets');
-var nodemailer = require("nodemailer");
-var smtpTransport = nodemailer.createTransport('SMTP', {
+const secrets = require('../config/secrets');
+const nodemailer = require("nodemailer");
+const smtpTransport = nodemailer.createTransport('SMTP', {
  service: 'Mailgun',
  auth: {
    user: secrets.mailgun.login,
@@ -37,20 +37,20 @@ exports.postContact = function(req, res) {
   req.assert('email', 'Email is not valid').isEmail();
   req.assert('message', 'Message cannot be blank').notEmpty();
 
-  var errors = req.validationErrors();
+  const errors = req.validationErrors();
 
   if (errors) {
     req.flash('errors', errors);
     return res.redirect('/contact');
   }
 
-  var from = req.body.email;
-  var name = req.body.name;
-  var body = req.body.message;
-  var to = 'your@email.com';
-  var subject = 'Contact From Kano';
+  const from = req.body.email;
+  const name = req.body.name;
+  const body = req.body.message;
+  const to = 'your@email.com';
+  const subject = 'Contact From Kano';
 
-  var mailOptions = {
+  const mailOptions = {
     to: to,
     from: from,
     subject: subject,

@@ -1,22 +1,23 @@
-var secrets = require('../config/secrets');
-var User = require('../models/User');
-var querystring = require('querystring');
-var validator = require('validator');
-var async = require('async');
-var cheerio = require('cheerio');
-var request = require('request');
-var _ = require('lodash');
-var graph = require('fbgraph');
-var LastFmNode = require('lastfm').LastFmNode;
-var tumblr = require('tumblr.js');
-var foursquare = require('node-foursquare')({ secrets: secrets.foursquare });
-var Github = require('github-api');
-var Twit = require('twit');
-var stripe =  require('stripe')(secrets.stripe.apiKey);
-var d3 = require('d3');
-var twilio = require('twilio')(secrets.twilio.sid, secrets.twilio.token);
-var Linkedin = require('node-linkedin')(secrets.linkedin.clientID, secrets.linkedin.clientSecret, secrets.linkedin.callbackURL);
-var clockwork = require('clockwork')({key: secrets.clockwork.apiKey});
+'use strict';
+const secrets = require('../config/secrets');
+const User = require('../models/User');
+const querystring = require('querystring');
+const validator = require('validator');
+const async = require('async');
+const cheerio = require('cheerio');
+const request = require('request');
+const _ = require('lodash');
+const graph = require('fbgraph');
+const LastFmNode = require('lastfm').LastFmNode;
+const tumblr = require('tumblr.js');
+const foursquare = require('node-foursquare')({ secrets: secrets.foursquare });
+const Github = require('github-api');
+const Twit = require('twit');
+const stripe =  require('stripe')(secrets.stripe.apiKey);
+const d3 = require('d3');
+const twilio = require('twilio')(secrets.twilio.sid, secrets.twilio.token);
+const Linkedin = require('node-linkedin')(secrets.linkedin.clientID, secrets.linkedin.clientSecret, secrets.linkedin.callbackURL);
+const clockwork = require('clockwork')({key: secrets.clockwork.apiKey});
 
 /**
  * GET /api
@@ -46,7 +47,7 @@ exports.getD3 = function(req, res) {
  */
 
 exports.getFoursquare = function(req, res, next) {
-  var token = _.findWhere(req.user.tokens, { kind: 'foursquare' });
+  const token = _.findWhere(req.user.tokens, { kind: 'foursquare' });
   async.parallel({
     trendingVenues: function(callback) {
       foursquare.Venues.getTrending('40.7222756', '-74.0022724', { limit: 50 }, token.accessToken, function(err, results) {
@@ -81,8 +82,8 @@ exports.getFoursquare = function(req, res, next) {
  */
 
 exports.getTumblr = function(req, res) {
-  var token = _.findWhere(req.user.tokens, { kind: 'tumblr' });
-  var client = tumblr.createClient({
+  const token = _.findWhere(req.user.tokens, { kind: 'tumblr' });
+  const client = tumblr.createClient({
     consumer_key: secrets.tumblr.consumerKey,
     consumer_secret: secrets.tumblr.consumerSecret,
     token: token.accessToken,
@@ -103,7 +104,7 @@ exports.getTumblr = function(req, res) {
  */
 
 exports.getFacebook = function(req, res, next) {
-  var token = _.findWhere(req.user.tokens, { kind: 'facebook' });
+  const token = _.findWhere(req.user.tokens, { kind: 'facebook' });
   graph.setAccessToken(token.accessToken);
   async.parallel({
     getMe: function(done) {
@@ -135,8 +136,8 @@ exports.getFacebook = function(req, res, next) {
 exports.getCheerio = function(req, res, next) {
   request.get('https://news.ycombinator.com/', function(err, request, body) {
     if (err) return next(err);
-    var $ = cheerio.load(body);
-    var links = [];
+    const $ = cheerio.load(body);
+    const links = [];
     $(".title a[href^='http'], a[href^='https']").each(function() {
       links.push($(this));
     });
@@ -152,9 +153,9 @@ exports.getCheerio = function(req, res, next) {
  * GitHub API Example.
  */
 exports.getGithub = function(req, res) {
-  var token = _.findWhere(req.user.tokens, { kind: 'github' });
-  var github = new Github({ token: token.accessToken });
-  var repo = github.getRepo('erictherobot', 'kano');
+  const token = _.findWhere(req.user.tokens, { kind: 'github' });
+  const github = new Github({ token: token.accessToken });
+  const repo = github.getRepo('erictherobot', 'kano');
   repo.show(function(err, repo) {
     res.render('api/github', {
       title: 'GitHub API',
@@ -181,11 +182,11 @@ exports.getAviary = function(req, res) {
  */
 
 exports.getNewYorkTimes = function(req, res, next) {
-  var query = querystring.stringify({ 'api-key': secrets.nyt.key, 'list-name': 'young-adult' });
-  var url = 'http://api.nytimes.com/svc/books/v2/lists?' + query;
+  const query = querystring.stringify({ 'api-key': secrets.nyt.key, 'list-name': 'young-adult' });
+  const url = 'http://api.nytimes.com/svc/books/v2/lists?' + query;
   request.get(url, function(error, request, body) {
     if (request.statusCode === 403) return next(Error('Missing or Invalid New York Times API Key'));
-    var bestsellers = JSON.parse(body);
+    const bestsellers = JSON.parse(body);
     res.render('api/nyt', {
       title: 'New York Times API',
       books: bestsellers.results
@@ -199,7 +200,7 @@ exports.getNewYorkTimes = function(req, res, next) {
  */
 
 exports.getLastfm = function(req, res, next) {
-  var lastfm = new LastFmNode(secrets.lastfm);
+  const lastfm = new LastFmNode(secrets.lastfm);
   async.parallel({
     artistInfo: function(done) {
       lastfm.request("artist.getInfo", {
@@ -219,7 +220,7 @@ exports.getLastfm = function(req, res, next) {
         artist: 'Epica',
         handlers: {
           success: function(data) {
-            var albums = [];
+            const albums = [];
             _.each(data.topalbums.album, function(album) {
               albums.push(album.image.slice(-1)[0]['#text']);
             });
@@ -234,7 +235,7 @@ exports.getLastfm = function(req, res, next) {
   },
   function(err, results) {
     if (err) return next(err.message);
-    var artist = {
+    const artist = {
       name: results.artistInfo.artist.name,
       image: results.artistInfo.artist.image.slice(-1)[0]['#text'],
       tags: results.artistInfo.artist.tags.tag,
@@ -256,8 +257,8 @@ exports.getLastfm = function(req, res, next) {
  */
 
 exports.getTwitter = function(req, res, next) {
-  var token = _.findWhere(req.user.tokens, { kind: 'twitter' });
-  var T = new Twit({
+  const token = _.findWhere(req.user.tokens, { kind: 'twitter' });
+  const T = new Twit({
     consumer_key: secrets.twitter.consumerKey,
     consumer_secret: secrets.twitter.consumerSecret,
     access_token: token.accessToken,
@@ -404,13 +405,13 @@ exports.getStripeCustomers = function(req, res, next) {
  */
 
 exports.getSteam = function(req, res, next) {
-  var steamId = '76561197982488301';
-  var query = { l: 'english', steamid: steamId, key: secrets.steam.apiKey };
+  const steamId = '76561197982488301';
+  const query = { l: 'english', steamid: steamId, key: secrets.steam.apiKey };
 
   async.parallel({
     playerAchievements: function(done) {
       query.appid = '49520';
-      var qs = querystring.stringify(query);
+      const qs = querystring.stringify(query);
       request.get({ url: 'http://api.steampowered.com/ISteamUserStats/GetPlayerAchievements/v0001/?' + qs, json: true }, function(error, request, body) {
         if (request.statusCode === 401) return done(new Error('Missing or Invalid Steam API Key'));
         done(error, body);
@@ -418,7 +419,7 @@ exports.getSteam = function(req, res, next) {
     },
     playerSummaries: function(done) {
       query.steamids = steamId;
-      var qs = querystring.stringify(query);
+      const qs = querystring.stringify(query);
       request.get({ url: 'http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?' + qs, json: true }, function(error, request, body) {
         if (request.statusCode === 401) return done(new Error('Missing or Invalid Steam API Key'));
         done(error, body);
@@ -427,7 +428,7 @@ exports.getSteam = function(req, res, next) {
     ownedGames: function(done) {
       query.include_appinfo = 1;
       query.include_played_free_games = 1;
-      var qs = querystring.stringify(query);
+      const qs = querystring.stringify(query);
       request.get({ url: 'http://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?' + qs, json: true }, function(error, request, body) {
         if (request.statusCode === 401) return done(new Error('Missing or Invalid Steam API Key'));
         done(error, body);
@@ -463,7 +464,7 @@ exports.getTwilio = function(req, res, next) {
  */
 
 exports.postTwilio = function(req, res, next) {
-  var message = {
+  const message = {
     to: req.body.telephone,
     from: '+3474710386',
     body: 'Hey there from Kano'
@@ -493,7 +494,7 @@ exports.getClockwork = function(req, res) {
  */
 
 exports.postClockwork = function(req, res, next) {
-  var message = {
+  const message = {
     To: req.body.telephone,
     From: 'Kano',
     Content: 'hey there from Kano'
@@ -511,8 +512,8 @@ exports.postClockwork = function(req, res, next) {
  */
 
 exports.getVenmo = function(req, res, next) {
-  var token = _.findWhere(req.user.tokens, { kind: 'venmo' });
-  var query = querystring.stringify({ access_token: token.accessToken });
+  const token = _.findWhere(req.user.tokens, { kind: 'venmo' });
+  const query = querystring.stringify({ access_token: token.accessToken });
 
   async.parallel({
     getProfile: function(done) {
@@ -550,16 +551,16 @@ exports.postVenmo = function(req, res, next) {
   req.assert('note', 'Please enter a message to accompany the payment').notEmpty();
   req.assert('amount', 'The amount you want to pay cannot be blank').notEmpty();
 
-  var errors = req.validationErrors();
+  const errors = req.validationErrors();
 
   if (errors) {
     req.flash('errors', errors);
     return res.redirect('/api/venmo');
   }
 
-  var token = _.findWhere(req.user.tokens, { kind: 'venmo' });
+  const token = _.findWhere(req.user.tokens, { kind: 'venmo' });
 
-  var formData = {
+  const formData = {
     access_token: token.accessToken,
     note: req.body.note,
     amount: req.body.amount
@@ -591,8 +592,8 @@ exports.postVenmo = function(req, res, next) {
  */
 
 exports.getLinkedin = function(req, res, next) {
-  var token = _.findWhere(req.user.tokens, { kind: 'linkedin' });
-  var linkedin = Linkedin.init(token.accessToken);
+  const token = _.findWhere(req.user.tokens, { kind: 'linkedin' });
+  const linkedin = Linkedin.init(token.accessToken);
 
   linkedin.people.me(function(err, $in) {
     if (err) return next(err);

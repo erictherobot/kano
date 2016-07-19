@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/erictherobot/kano.svg?branch=master)
+![Build Status](https://travis-ci.org/erictherobot/kano.svg?branch=master)
 
 KANO
 ====

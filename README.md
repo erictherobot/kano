@@ -1,4 +1,4 @@
-![Magnium CI Build Status](https://magnum-ci.com/status/2b8aafce819111e1aa3ea86d007fbd7c.png "Magnium CI Build Status")
+[![Build Status](https://travis-ci.org/erictherobot/kano.svg?branch=master)
 
 KANO
 ====

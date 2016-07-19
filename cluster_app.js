@@ -2,8 +2,8 @@
  * Module dependencies.
  */
 
-var os = require('os');
-var cluster = require('cluster');
+const os = require('os');
+const cluster = require('cluster');
 
 /**
  * Cluster setup.
@@ -22,6 +22,6 @@ cluster.on('exit', function(worker) {
 });
 
 // Fork a worker for each available CPU
-for (var i = 0; i < os.cpus().length; i++) {
+for (let i = 0; i < os.cpus().length; i++) {
   cluster.fork();
 }

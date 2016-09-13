@@ -12,6 +12,9 @@ html
     link(rel='icon', href='../img/favicon.ico', type='image/x-icon')
     title #{title} | Kano
     != css('styles')
+    script(src='https://unpkg.com/react@15.3.1/dist/react.js')
+    script(src='https://unpkg.com/react-dom@15.3.1/dist/react-dom.js')
+    script(src='https://unpkg.com/babel-core@5.8.38/browser.min.js')
   body
     #wrap
       include partials/navigation

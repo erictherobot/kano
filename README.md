@@ -1,9 +1,9 @@
 ![Build Status](https://travis-ci.org/erictherobot/kano.svg?branch=master)
 
-KANO
+KANO (ReactJS Version) - this is a work in progress!
 ====
 
-nodejs + expressjs + mongodb + jade + bootstrap + mocha + API's
+REACT + nodejs + expressjs + mongodb + jade + bootstrap + mocha + API's
 
 Demo
 ====
@@ -116,7 +116,7 @@ License
 
 The MIT License (MIT)
 
-Copyright (c) 2014 Eric The Robot
+Copyright (c) 2016 Eric The Robot
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

@@ -1,12 +1,20 @@
-.panel.panel-default
-  .list-group
-      //- h4.list-group-item-heading testing
-      a.list-group-item(href='/pages/getting-started', class=title=='Getting Started'?'active':undefined) Getting Started
-      a.list-group-item(href='/pages/about-us', class=title=='About Us'?'active':undefined) About Us
-      a.list-group-item(href='/pages/our-team', class=title=='Our Team'?'active':undefined) Team
-      a.list-group-item(href='/pages/jobs', class=title=='Jobs'?'active':undefined) Jobs
-      a.list-group-item(href='/pages/press', class=title=='Press'?'active':undefined) Press
-      a.list-group-item(href='/pages/faqs', class=title=='FAQs'?'active':undefined) FAQs
-      a.list-group-item(href='/pages/privacy-policy', class=title=='Privacy Policy'?'active':undefined) Privacy Policy
-      a.list-group-item(href='/pages/terms-of-use', class=title=='Terms Of Use'?'active':undefined) Terms Of Use
-      a.list-group-item(href='/pages/contact-us', class=title=='Contact Us'?'active':undefined) Contact Us
+#pages-nav
+//- @TODO: Externalize component + add ternary operator to check which link is active i.e: a.list-group-item(href='/pages/getting-started', class=title=='Getting Started'?'active':undefined) Getting Started
+
+script(type='text/babel').
+  ReactDOM.render(
+    <div className="panel panel-default">
+      <div className="list-group">
+        <a href="/pages/getting-started" className="list-group-item">Getting Started</a>
+        <a href="/pages/about-us" className="list-group-item">About Us</a>
+        <a href="/pages/our-team" className="list-group-item">Team</a>
+        <a href="/pages/jobs" className="list-group-item">Jobs</a>
+        <a href="/pages/press" className="list-group-item">Press</a>
+        <a href="/pages/faqs" className="list-group-item">FAQs</a>
+        <a href="/pages/privacy-policy" className="list-group-item">Privacy Policy</a>
+        <a href="/pages/terms-of-use" className="list-group-item">Terms Of Use</a>
+        <a href="/pages/contact-us" className="list-group-item">Contact Us</a>
+      </div>
+    </div>,
+  document.getElementById('pages-nav')
+  );

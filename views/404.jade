@@ -1,11 +1,18 @@
 extends layout
 
 block content
-  #hero-page.jumbotron.text-center.abel
-    .container
-      h1.hero-text.animated.wobble
-        | !@#$%^&*()_+
-    br
+  #page-header
+  //- @TODO: Externalize component
+  script(type='text/babel').
+    ReactDOM.render(
+      <div id="hero-page" className="jumbotron text-center abel">
+        <div className="container">
+          <h1 className="hero-text animated fadeInDown">!@#$&*()_+</h1>
+        </div><br/>
+      </div>,
+    document.getElementById('page-header')
+    );
+    
   .container
     .row.text-center
       h1 Error 404

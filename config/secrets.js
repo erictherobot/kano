@@ -1,5 +1,8 @@
 module.exports = {
-  db: process.env.MONGODB|| 'mongodb://heroku_app33720103:ur3v9jv3grgabqa2dfrbmnv9qq@ds041581.mongolab.com:41581/heroku_app33720103',
+
+  db: process.env.MONGOLAB_URI|| 'mongodb://localhost:27017/kano',
+
+  db: process.env.MONGODB|| 'mongodb://localhost:27017/kano',
 
   sessionSecret: process.env.SESSION_SECRET || 'Your Session Secret goes here',
 

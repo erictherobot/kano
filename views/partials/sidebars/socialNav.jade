@@ -1,17 +1,15 @@
-.panel.panel-default
-  .list-group
-      a.btn.btn-block.btn-facebook.btn-social(href='/auth/facebook')
-        i.fa.fa-facebook
-        | Sign in with Facebook
-      a.btn.btn-block.btn-twitter.btn-social(href='/auth/twitter')
-        i.fa.fa-twitter
-        | Sign in with Twitter
-      a.btn.btn-block.btn-google-plus.btn-social(href='/auth/google')
-        i.fa.fa-google-plus
-        | Sign in with Google
-      a.btn.btn-block.btn-github.btn-social(href='/auth/github')
-        i.fa.fa-github
-        | Sign in with GitHub
-      a.btn.btn-block.btn-linkedin.btn-social(href='/auth/linkedin')
-        i.fa.fa-linkedin
-        | Sign in with LinkedIn
+#social-nav
+//- @TODO: Externalize component
+script(type='text/babel').
+  ReactDOM.render(
+    <div className="panel panel-default">
+      <div className="list-group">
+        <a href="/auth/facebook" className="btn btn-block btn-facebook btn-social"><i className="fa fa-facebook"></i>Sign in with Facebook</a>
+        <a href="/auth/twitter" className="btn btn-block btn-twitter btn-social"><i className="fa fa-twitter"></i>Sign in with Twitter</a>
+        <a href="/auth/google" className="btn btn-block btn-google-plus btn-social"><i className="fa fa-google-plus"></i>Sign in with Google</a>
+        <a href="/auth/github" className="btn btn-block btn-github btn-social"><i className="fa fa-github"></i>Sign in with GitHub</a>
+        <a href="/auth/linkedin" className="btn btn-block btn-linkedin btn-social"><i className="fa fa-linkedin"></i>Sign in with LinkedIn</a>
+      </div>
+    </div>,
+  document.getElementById('social-nav')
+  );

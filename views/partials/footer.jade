@@ -1,31 +1,39 @@
 #footer
-.banner.banner-footer
-  .container
-    .row
-      .col-lg-12.text-center
-        h3 Made with
-          span.love
-            i.fa.fa-heart.fa
-        p.muted &copy; 2016 Your Company, Inc.
-    .row
-      .col-lg-12
-        hr
-        .col-md-4
-          ul.list-unstyled.list-inline
-            li: a(href='#')
-              i.fa.fa-facebook
-            li: a(href='#')
-              i.fa.fa-twitter
-            li: a(href='#')
-              i.fa.fa-pinterest
-            li: a(href='#')
-              i.fa.fa-instagram
-            li: a(href='#')
-              i.fa.fa-tumblr
-        .col-md-8
-          ul.list-unstyled.list-inline.pull-right
-            li: a(href='/pages/contact-us') Contact
-            li: a(href='/pages/about-us') About
-            li: a(href='/pages/faqs') FAQs
-            li: a(href='/pages/terms-of-use') Terms
-            li: a(href='/pages/privacy-policy') Privacy
+//- @TODO: Externalize component
+script(type='text/babel').
+  ReactDOM.render(
+    <div className="banner banner-footer">
+      <div className="container">
+        <div className="row">
+          <div className="col-lg-12 text-center">
+            <h3>Made with<span className="love"><i className="fa fa-heart fa"></i></span></h3>
+            <p className="muted">&copy; 2016 Your Company, Inc.</p>
+          </div>
+        </div>
+        <div className="row">
+          <div className="col-lg-12">
+            <hr/>
+            <div className="col-md-4">
+              <ul className="list-unstyled list-inline">
+                <li><a href="#"><i className="fa fa-facebook"></i></a></li>
+                <li><a href="#"><i className="fa fa-twitter"></i></a></li>
+                <li><a href="#"><i className="fa fa-pinterest"></i></a></li>
+                <li><a href="#"><i className="fa fa-instagram"></i></a></li>
+                <li><a href="#"><i className="fa fa-tumblr"></i></a></li>
+              </ul>
+            </div>
+            <div className="col-md-8">
+              <ul className="list-unstyled list-inline pull-right">
+                <li><a href="/pages/contact-us">Contact</a></li>
+                <li><a href="/pages/about-us">About</a></li>
+                <li><a href="/pages/faqs">FAQs</a></li>
+                <li><a href="/pages/terms-of-use">Terms</a></li>
+                <li><a href="/pages/privacy-policy">Privacy</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>,
+  document.getElementById('footer')
+  );

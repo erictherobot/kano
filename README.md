@@ -58,13 +58,13 @@ Change directory
 
     cd kano
 
-Install NPM and Dependencies from package.json file
+Install Dependencies from package.json file
 
-    npm install
+    yarn
 
 Start the app
 
-    node app.js
+    yarn start
 
 If you want the app to run continually during development, use https://github.com/remy/nodemon
 
@@ -84,7 +84,7 @@ Next run from terminal - it will launch a new browser window
 Tests
 ====
 
-    npm test
+    yarn test
 
 Coding Music
 ====

@@ -231,7 +231,7 @@ boom@2.x.x:
   dependencies:
     hoek "2.x.x"
 
-bson@~0.5.4, bson@~0.5.5:
+bson@~0.5.4, bson@~0.5.5, bson@~0.5.6:
   version "0.5.6"
   resolved "https://registry.yarnpkg.com/bson/-/bson-0.5.6.tgz#e03de80a692c28fca4396f0d14c97069bd2b73a6"
 
@@ -1686,7 +1686,22 @@ mongodb-core@2.0.12:
     bson "~0.5.5"
     require_optional "~1.0.0"
 
-"mongodb@>= 1.2.0 <3.0.0", mongodb@2.2.10:
+mongodb-core@2.0.13:
+  version "2.0.13"
+  resolved "https://registry.yarnpkg.com/mongodb-core/-/mongodb-core-2.0.13.tgz#f9394b588dce0e579482e53d74dbc7d7a9d4519c"
+  dependencies:
+    bson "~0.5.6"
+    require_optional "~1.0.0"
+
+"mongodb@>= 1.2.0 <3.0.0":
+  version "2.2.11"
+  resolved "https://registry.yarnpkg.com/mongodb/-/mongodb-2.2.11.tgz#a828b036fe6a437a35e723af5f81781c4976306c"
+  dependencies:
+    es6-promise "3.2.1"
+    mongodb-core "2.0.13"
+    readable-stream "2.1.5"
+
+mongodb@2.2.10:
   version "2.2.10"
   resolved "https://registry.yarnpkg.com/mongodb/-/mongodb-2.2.10.tgz#d11273a5a53b08e17bcc4c8a295ded0f151ccae6"
   dependencies:

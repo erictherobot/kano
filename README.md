@@ -3,7 +3,7 @@
 KANO
 ====
 
-nodejs + expressjs + mongodb + jade + bootstrap + mocha + API's
+nodejs + expressjs + mongodb + ~~jade~~ pug + bootstrap + mocha + API's
 
 Demo
 ====

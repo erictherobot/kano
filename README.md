@@ -5,11 +5,6 @@ KANO
 
 nodejs + expressjs + mongodb + ~~jade~~ pug + bootstrap + mocha + API's
 
-Demo
-====
-
-https://kanoapp.herokuapp.com
-
 Themes
 ====
 

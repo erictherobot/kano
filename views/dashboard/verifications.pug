@@ -1,42 +1,42 @@
 extends ../layout
 
 block content
-  #hero-page.jumbotron.text-center.abel
+    #hero-page.jumbotron.text-center.abel
+        .container
+            h1.hero-text.animated.fadeInDown
+                | Verifications
+        br
     .container
-      h1.hero-text.animated.fadeInDown
-        | Verifications
-    br
-  .container
-    .row
-      .col-md-4.hidden-xs.hidden-sm
-        include ../partials/sidebars/dashboardNav
-      .col-md-8
-        .panel.panel-default
-            .panel-heading
-                h3.panel-title Verifications
-              .panel-body
-              include ../partials/flash
-              if user.google
-                p: a.text-danger(href='/dashboard/unlink/google') Unlink your Google account
-              else
-                p: a(href='/auth/google') Link your Google account
+        .row
+            .col-md-4.hidden-xs.hidden-sm
+                include ../partials/sidebars/dashboardNav
+            .col-md-8
+                .panel.panel-default
+                    .panel-heading
+                        h3.panel-title Verifications
+                    .panel-body
+                    include ../partials/flash
+                    if user.google
+                        p: a.text-danger(href='/dashboard/unlink/google') Unlink your Google account
+                    else
+                        p: a(href='/auth/google') Link your Google account
 
-              if user.facebook
-                p: a.text-danger(href='/dashboard/unlink/facebook') Unlink your Facebook account
-              else
-                p: a(href='/auth/facebook') Link your Facebook account
+                    if user.facebook
+                        p: a.text-danger(href='/dashboard/unlink/facebook') Unlink your Facebook account
+                    else
+                        p: a(href='/auth/facebook') Link your Facebook account
 
-              if user.twitter
-                p: a.text-danger(href='/dashboard/unlink/twitter') Unlink your Twitter account
-              else
-                p: a(href='/auth/twitter') Link your Twitter account
+                    if user.twitter
+                        p: a.text-danger(href='/dashboard/unlink/twitter') Unlink your Twitter account
+                    else
+                        p: a(href='/auth/twitter') Link your Twitter account
 
-              if user.github
-                p: a.text-danger(href='/dashboard/unlink/github') Unlink your GitHub account
-              else
-                p: a(href='/auth/github') Link your GitHub account
+                    if user.github
+                        p: a.text-danger(href='/dashboard/unlink/github') Unlink your GitHub account
+                    else
+                        p: a(href='/auth/github') Link your GitHub account
 
-              if user.linkedin
-                p: a.text-danger(href='/dashboard/unlink/linkedin') Unlink your LinkedIn account
-              else
-                p: a(href='/auth/linkedin') Link your LinkedIn account
+                    if user.linkedin
+                        p: a.text-danger(href='/dashboard/unlink/linkedin') Unlink your LinkedIn account
+                    else
+                        p: a(href='/auth/linkedin') Link your LinkedIn account

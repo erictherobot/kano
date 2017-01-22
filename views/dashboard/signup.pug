@@ -1,40 +1,40 @@
 extends ../layout
 
 block content
-  #hero-page.jumbotron.text-center.abel
+    #hero-page.jumbotron.text-center.abel
+        .container
+            h1.hero-text.animated.fadeInDown
+                | Sign Up
+        br
     .container
-      h1.hero-text.animated.fadeInDown
-        | Sign Up
-    br
-  .container
-    .row
-      .col-md-3
-        include ../partials/sidebars/socialNav
-      .col-md-6
-        .panel.panel-default
-            .panel-heading
-                h3.panel-title Sign Up
-            .panel-body
-              include ../partials/flash
-              form.form-horizontal(id='signup-form', method='POST')
-                input(type='hidden', name='_csrf', value=_csrf)
-                .col-sm-8
-                  .form-group
-                      input.form-control(type='email', name='email', id='email', placeholder='Email', autofocus)
-                  .form-group
-                      input.form-control(type='password', name='password', id='password', placeholder='Password')
-                  .form-group
-                      input.form-control(type='password', name='confirmPassword', id='confirmPassword', placeholder='Confirm Password')
-                  .form-group
-                      button.btn.btn-kano-invert(type='submit')
-                        i.fa.fa-check
-                        | Sign up
+        .row
+            .col-md-3
+                include ../partials/sidebars/socialNav
+            .col-md-6
+                .panel.panel-default
+                    .panel-heading
+                        h3.panel-title Sign Up
+                    .panel-body
+                        include ../partials/flash
+                        form.form-horizontal(id='signup-form', method='POST')
+                            input(type='hidden', name='_csrf', value=_csrf)
+                            .col-sm-8
+                                .form-group
+                                    input.form-control(type='email', name='email', id='email', placeholder='Email', autofocus)
+                                .form-group
+                                    input.form-control(type='password', name='password', id='password', placeholder='Password')
+                                .form-group
+                                    input.form-control(type='password', name='confirmPassword', id='confirmPassword', placeholder='Confirm Password')
+                                .form-group
+                                    button.btn.btn-kano-invert(type='submit')
+                                        i.fa.fa-check
+                                        | Sign up
 
-      .col-sm-3
-        .well
-          h3.panel-title Need Help?
-          hr
-          ul
-            li: a(href='/pages/contact-us') Contact Us
-            li: a(href='/pages/faqs') FAQs
-            li: a(href='/signin') Sign In
+            .col-sm-3
+                .well
+                    h3.panel-title Need Help?
+                    hr
+                    ul
+                        li: a(href='/pages/contact-us') Contact Us
+                        li: a(href='/pages/faqs') FAQs
+                        li: a(href='/signin') Sign In

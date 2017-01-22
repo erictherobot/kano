@@ -1,18 +1,18 @@
 extends layout
 
 block content
-  #hero-page.jumbotron.text-center.abel
+    #hero-page.jumbotron.text-center.abel
+        .container
+            h1.hero-text.animated.wobble
+                | !@#$%^&*()_+
+        br
     .container
-      h1.hero-text.animated.wobble
-        | !@#$%^&*()_+
-    br
-  .container
-    .row.text-center
-      h1 Error 404
-      p.lead The requested page could not be found
-      ul.list-inline#help
-        li: a(href="/") Home Page
-        | /
-        li: a(href="/contact-us") Contact Us
-        | /
-        li: a(href="/faqs") FAQs
+        .row.text-center
+            h1 Error 404
+            p.lead The requested page could not be found
+            ul.list-inline#help
+                li: a(href="/") Home Page
+                | /
+                li: a(href="/contact-us") Contact Us
+                | /
+                li: a(href="/faqs") FAQs

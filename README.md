@@ -3,6 +3,8 @@
 KANO
 ====
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/erictherobot/kano.svg)](https://greenkeeper.io/)
+
 nodejs + expressjs + mongodb + ~~jade~~ pug + bootstrap + mocha + API's
 
 Themes

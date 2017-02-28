@@ -55,7 +55,7 @@
     "tumblr.js": "^1.1.0",
     "twilio": "^3.3.0-edge",
     "twit": "^2.1.0",
-    "uglify-js": "^2.4.24",
+    "uglify-js": "^2.8.0",
     "validator": "^6.2.1",
     "yui": "^3.18.1"
   },

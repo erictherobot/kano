@@ -12,7 +12,7 @@
   "dependencies": {
     "async": "^2.0.0",
     "bcrypt-nodejs": "^0.0.3",
-    "body-parser": "^1.13.3",
+    "body-parser": "^1.17.1",
     "cheerio": "^0.22.0",
     "clockwork": "^0.1.1",
     "compression": "^1.5.2",

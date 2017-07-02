@@ -13,7 +13,7 @@
     "async": "^2.0.0",
     "bcrypt-nodejs": "^0.0.3",
     "body-parser": "^1.13.3",
-    "cheerio": "^0.22.0",
+    "cheerio": "^1.0.0-rc.2",
     "clockwork": "^0.1.1",
     "compression": "^1.5.2",
     "connect-assets": "^5.0.1",

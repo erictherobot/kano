@@ -3,6 +3,8 @@
 KANO
 ====
 
+***THIS PROJECT IS NO LONGER MAINTAINED AS OF 11/17/2017***
+
 nodejs + expressjs + mongodb + ~~jade~~ pug + bootstrap + mocha + API's
 
 Themes

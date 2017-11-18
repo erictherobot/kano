@@ -15,27 +15,27 @@ Choosing your base theme color is as easy as changing a value in kano.less
     @brand-kano: #e24e24;
 
 Produces an Orange theme:
-![](http://stopbrain.com/content/images/2014/Apr/Screen_Shot_2014_04_06_at_10_43_04_AM.png)
+![](https://res.cloudinary.com/devpost/image/fetch/s--cLsfMsiH--/c_limit,f_auto,fl_lossy,q_auto,w_900/http://stopbrain.com/content/images/2014/Apr/Screen_Shot_2014_04_06_at_10_43_04_AM.png)
 
     @brand-kano: #6e5acc;
 
 Produces a Purple theme:
-![](http://stopbrain.com/content/images/2014/Apr/Screen_Shot_2014_04_06_at_10_46_43_AM.png)
+![](https://res.cloudinary.com/devpost/image/fetch/s--cLsfMsiH--/c_limit,f_auto,fl_lossy,q_auto,w_900/http://stopbrain.com/content/images/2014/Apr/Screen_Shot_2014_04_06_at_10_46_43_AM.png)
 
     @brand-kano: #56AFE1;
 
 Produces a Blue theme:
-![](http://stopbrain.com/content/images/2014/Apr/Screen_Shot_2014_04_06_at_10_49_16_AM.png)
+![](https://res.cloudinary.com/devpost/image/fetch/s--cLsfMsiH--/c_limit,f_auto,fl_lossy,q_auto,w_900/http://stopbrain.com/content/images/2014/Apr/Screen_Shot_2014_04_06_at_10_49_16_AM.png)
 
     @brand-kano: #1ebf8f;
 
 Produces a Green theme:
-![](http://stopbrain.com/content/images/2014/Apr/Screen_Shot_2014_04_06_at_10_58_41_AM.png)
+![](https://res.cloudinary.com/devpost/image/fetch/s--cLsfMsiH--/c_limit,f_auto,fl_lossy,q_auto,w_900/http://stopbrain.com/content/images/2014/Apr/Screen_Shot_2014_04_06_at_10_58_41_AM.png)
 
     @brand-kano: #000000;
 
 Produces a Black theme:
-![](http://stopbrain.com/content/images/2014/Apr/Screen_Shot_2014_04_06_at_10_56_09_AM.png)
+![](https://res.cloudinary.com/devpost/image/fetch/s--cLsfMsiH--/c_limit,f_auto,fl_lossy,q_auto,w_900/http://stopbrain.com/content/images/2014/Apr/Screen_Shot_2014_04_06_at_10_56_09_AM.png)
 
 Prerequisites
 ====

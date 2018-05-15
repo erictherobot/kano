@@ -50,7 +50,7 @@
     "passport-openid": "^0.4.0",
     "passport-twitter": "^1.0.3",
     "pug": "^2.0.0-beta6",
-    "request": "^2.61.0",
+    "request": "^2.86.0",
     "stripe": "^4.0.0",
     "tumblr.js": "^1.1.0",
     "twilio": "^3.3.0-edge",

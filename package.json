@@ -22,7 +22,7 @@
     "csso": "^2.2.0",
     "d3": "^4.1.1",
     "errorhandler": "^1.4.2",
-    "express": "^4.13.3",
+    "express": "^4.17.1",
     "express-flash": "^0.0.2",
     "express-session": "^1.11.3",
     "express-validator": "^3.1.2",

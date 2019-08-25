@@ -27,7 +27,7 @@
     "express-session": "^1.11.3",
     "express-validator": "^3.1.2",
     "fbgraph": "^1.0.0",
-    "github-api": "^3.0.0",
+    "github-api": "^3.2.3",
     "instagram-node": "^0.5.7",
     "lastfm": "^0.9.2",
     "less": "^2.5.1",
